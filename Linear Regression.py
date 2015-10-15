@@ -67,8 +67,12 @@ def show_linear_line(x_parameters, y_parameters):
 X, Y = get_data('input_data.csv')
 predicted_value = 700
 result = linear_model_main(X, Y, predicted_value)
-print('Constant Value: {0}'.format(round(result['intercept'], 2)))
-print('Coefficient: {0}'.format(round(result['coefficient'], 2)))
-print('Predicted Value: {0}'.format(round(result['predicted_value'], 2)))
-print('R-Square: {0} ({1}%)'.format(result['r2score'],round(result['r2score'],2) * 100))
+constant = result['intercept']
+coefficient = result['coefficient'][0]
+predicted_value = result['predicted_value'][0]
+r_square = result['r2score']
+print('Constant Value: {0}'.format(round(constant, 2)))
+print('Coefficient: {0}'.format(round(coefficient, 2)))
+print('Predicted Value: {0}'.format(round(predicted_value, 2)))
+print('R-Square: {0} ({1}%)'.format(r_square,round(r_square,2) * 100))
 show_linear_line(X, Y)
