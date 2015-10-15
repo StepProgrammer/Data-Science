@@ -19,15 +19,20 @@ from sklearn import linear_model
 
 # Function to get data
 def get_data(file_name):
-    data = pd.read_csv(file_name, sep=";")
-    x_parameter = []
-    y_parameter = []
+    global x_parameter, y_parameter
+    try:
+        data = pd.read_csv(file_name, sep=";")
+        x_parameter = []
+        y_parameter = []
     # TODO: Replace the names of the fields 'square foot', 'price' for your own values
-    for single_square_feet in data['square_feet']:
-        x_parameter.append([float(single_square_feet)])
+        for single_square_feet in data['square_feet']:
+            x_parameter.append([float(single_square_feet)])
 
-    for single_price_value in data['price']:
-        y_parameter.append(float(single_price_value))
+        for single_price_value in data['price']:
+            y_parameter.append(float(single_price_value))
+    except IOError:
+        exit('File {0} not found. Exit'.format(file_name))
+
     return x_parameter, y_parameter
 
 
