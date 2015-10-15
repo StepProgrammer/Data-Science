@@ -1,7 +1,7 @@
 # coding=utf-8
 # Linear Regression Realization (http://dataaspirant.com/2014/12/20/linear-regression-implementation-in-python/)
 
-# input_data.csv:
+# input_data_.csv:
 # square_feet;price
 # 150;6450
 # 200;7450
