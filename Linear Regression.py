@@ -1,7 +1,7 @@
 # coding=utf-8
 # Linear Regression Realization (http://dataaspirant.com/2014/12/20/linear-regression-implementation-in-python/)
 
-# input_data_.csv:
+# input_data.csv:
 # square_feet;price
 # 150;6450
 # 200;7450
@@ -44,7 +44,9 @@ def linear_model_main(x_parameters, y_parameters, predict_value):
     regr.fit(x_parameters, y_parameters)
     # noinspection PyArgumentList
     predict_outcome = regr.predict(predict_value)
-    predictions = {'intercept': regr.intercept_, 'coefficient': regr.coef_, 'predicted_value': predict_outcome}
+    r2score = regr.score(x_parameters,y_parameters)
+    predictions = {'intercept': regr.intercept_, 'coefficient': regr.coef_, 'predicted_value': predict_outcome,
+                   'r2score': r2score}
     return predictions
 
 
@@ -68,4 +70,5 @@ result = linear_model_main(X, Y, predicted_value)
 print('Constant Value: {0}'.format(result['intercept']))
 print('Coefficient: {0}'.format(result['coefficient']))
 print('Predicted Value: {0}'.format(result['predicted_value']))
+print('R-Square: {0} ({1}%)'.format(result['r2score'],result['r2score'] * 100))
 show_linear_line(X, Y)
