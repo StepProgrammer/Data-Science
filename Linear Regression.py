@@ -17,6 +17,8 @@ import pandas as pd
 from sklearn import linear_model
 
 
+# TODO:
+
 # Function to get data
 def get_data(file_name):
     global x_parameter, y_parameter
@@ -24,7 +26,7 @@ def get_data(file_name):
         data = pd.read_csv(file_name, sep=";")
         x_parameter = []
         y_parameter = []
-    # TODO: Replace the names of the fields 'square foot', 'price' for your own values
+        # TODO: Replace the names of the fields 'square foot', 'price' for your own values
         for single_square_feet in data['square_feet']:
             x_parameter.append([float(single_square_feet)])
 
@@ -39,12 +41,14 @@ def get_data(file_name):
 # Function for Fitting our data to Linear model
 # noinspection PyPep8Naming
 def linear_model_main(x_parameters, y_parameters, predict_value):
+    lin_reg_score = []
     # Create linear regression object
     regr = linear_model.LinearRegression()
     regr.fit(x_parameters, y_parameters)
     # noinspection PyArgumentList
     predict_outcome = regr.predict(predict_value)
-    r2score = regr.score(x_parameters,y_parameters)
+    r2score = regr.score(x_parameters, y_parameters)
+    lin_reg_score.append(r2score)
     predictions = {'intercept': regr.intercept_, 'coefficient': regr.coef_, 'predicted_value': predict_outcome,
                    'r2score': r2score}
     return predictions
@@ -74,5 +78,5 @@ r_square = result['r2score']
 print('Constant Value: {0}'.format(round(constant, 2)))
 print('Coefficient: {0}'.format(round(coefficient, 2)))
 print('Predicted Value: {0}'.format(round(predicted_value, 2)))
-print('R-Square: {0} ({1}%)'.format(r_square,round(r_square,2) * 100))
+print('R-Square: {0} ({1}%)'.format(r_square,round(r_square, 4) * 100))
 show_linear_line(X, Y)
