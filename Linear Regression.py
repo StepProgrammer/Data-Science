@@ -24,6 +24,7 @@ from sklearn import linear_model
 def get_data(file_name):
     global x_parameter, y_parameter
     try:
+        # TODO: Change separator (sep) with
         data = pd.read_csv(file_name, sep=";")
         x_parameter = []
         y_parameter = []
