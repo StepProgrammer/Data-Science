@@ -18,7 +18,6 @@ import numpy as np
 from sklearn import linear_model
 
 
-# TODO:
 
 # Function to get data
 def get_data(file_name):
