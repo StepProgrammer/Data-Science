@@ -14,15 +14,15 @@
 # Required Packages
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 from sklearn import linear_model
 
-
-# TODO:
 
 # Function to get data
 def get_data(file_name):
     global x_parameter, y_parameter
     try:
+        # TODO: Replace the separator (sep) with your value.
         data = pd.read_csv(file_name, sep=";")
         x_parameter = []
         y_parameter = []
@@ -69,7 +69,8 @@ def show_linear_line(x_parameters, y_parameters):
 
 
 X, Y = get_data('input_data.csv')
-predicted_value = 700
+predicted_value = np.array([700])  # 700
+predicted_value = predicted_value.reshape(1, -1)
 result = linear_model_main(X, Y, predicted_value)
 constant = result['intercept']
 coefficient = result['coefficient'][0]
@@ -78,5 +79,5 @@ r_square = result['r2score']
 print('Constant Value: {0}'.format(round(constant, 2)))
 print('Coefficient: {0}'.format(round(coefficient, 2)))
 print('Predicted Value: {0}'.format(round(predicted_value, 2)))
-print('R-Square: {0} ({1}%)'.format(r_square,round(r_square, 4) * 100))
+print('R-Square: {0} ({1}%)'.format(r_square, round(r_square, 4) * 100))
 show_linear_line(X, Y)
